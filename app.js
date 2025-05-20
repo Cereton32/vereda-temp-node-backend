@@ -8,7 +8,7 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: "https://vereda-temp-project.netlify.app/",  
+  origin: "https://vereda-temp-project.netlify.app",  
   credentials: true
 }));
 app.use(bodyParser.json());
