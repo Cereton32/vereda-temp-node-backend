@@ -13,7 +13,7 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 
-// MySQL connection setup
+
 const getDb = async () => {
   return await mysql.createConnection({
     host: process.env.DB_HOST,
@@ -25,9 +25,9 @@ const getDb = async () => {
   });
 };
 
-// OTP Configuration
+// OTP
 const OTP_EXPIRY_TIME = 300000; // 5 minutes
-let otpStore = {}; // Use DB in production
+let otpStore = {}; 
 
 
 function generateOTP() {
@@ -65,7 +65,7 @@ app.post("/send-otp", async (req, res) => {
   }
 });
 
-// Route: Verify OTP
+// Routee
 app.post("/verify-otp", (req, res) => {
   const { email, otp } = req.body;
   const storedOtp = otpStore[email];
