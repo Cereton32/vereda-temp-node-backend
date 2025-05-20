@@ -191,7 +191,9 @@ app.post("/api/request-callback", async (req, res) => {
     console.error(err);
     res.status(500).json({ message: "Error saving request" });
   }
-});
+}); app.get('/test',async(req,res)=>{
+  res.send("activated")
+})
 
 
 // Server listener
