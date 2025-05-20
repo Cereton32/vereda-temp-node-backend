@@ -8,7 +8,7 @@ const SibApiV3Sdk = require('sib-api-v3-sdk');
 dotenv.config();
 const app = express();
 app.use(cors({
-  origin: "http://localhost:5173",  // Allow requests from Vite dev server
+  origin: "https://vereda-temp-project.netlify.app/",  
   credentials: true
 }));
 app.use(bodyParser.json());
@@ -29,19 +29,19 @@ const getDb = async () => {
 const OTP_EXPIRY_TIME = 300000; // 5 minutes
 let otpStore = {}; // Use DB in production
 
-// Generate a 6-digit OTP
+
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-// Configure Brevo
+// Configure bBrevo
 const brevoClient = SibApiV3Sdk.ApiClient.instance;
 const apiKey = brevoClient.authentications['api-key'];
 apiKey.apiKey = process.env.BREVO_API_KEY; // from .env
 
 const transactionalEmailApi = new SibApiV3Sdk.TransactionalEmailsApi();
 
-// Route: Send OTP
+Send OTP
 app.post("/send-otp", async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ error: "Email is required" });
